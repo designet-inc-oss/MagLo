@@ -1,0 +1,14 @@
+.addrange {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 780px;
+    margin-bottom: 20px;
+}
+
+.addtable {
+    display: table;
+    border-collapse: collapse;
+    width: 480px;
+    margin-bottom: 20px;
+}

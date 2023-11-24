@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BASE=`dirname $0`
+PROG=`basename $0`
+pushd ${BASE} > /dev/null
+
+./${PROG}.bin $@
+ret=$?
+
+popd ${BASE} > /dev/null
+
+exit ${ret}

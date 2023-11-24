@@ -1,0 +1,33 @@
+{include file='./base/header.tmpl'}
+
+<div class="msg">
+{$message}
+</div>
+
+<article class="login">
+  <form action="index.php" method="post" name="login">
+    <div class="table">
+      <div class="row">
+        <div class="label">
+          ユーザID
+        </div>
+        <div class="cell">
+          <input type="text" name="id"></input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          パスワード
+        </div>
+        <div class="cell">
+          <input type="password" name="passwd"></input>
+        </div>
+      </div>
+    </div>
+    <div class="lbutton">
+      <input class="submit" type="submit" name="submit" value="ログイン"></input>
+    </div>
+  </form>
+</article>
+
+{include file='./base/footer.tmpl'}

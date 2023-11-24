@@ -1,0 +1,47 @@
+#!/usr/bin/php
+<?php
+
+include_once("../lib/initialize.php");
+include_once("../lib/libmsqualldeliver.php");
+include_once("../lib/libreserv.php");
+
+$sendflg = 0;
+
+try {
+    
+    /* Check unmber of arguments */
+    if ($argc > 2) {
+      throw new SystemWarn(INVALID_EXEC_METHOD);
+    }
+    
+    /* Check option variety of argument */
+    if (isset($argv[1])) {
+        if ($argv[1] === "-t") {
+            $sendflg = 1;
+    
+        } else if ($argv[1] === "-i") {
+            $sendflg = 2;
+    
+        } else {
+            throw new SystemWarn(INVALID_EXEC_METHOD);
+        }
+    }
+
+    /* Get the time */
+    $start_time = time();
+
+    /* Read configuration file. */
+    new Config();
+
+    $statusObj = new msquallstatus();
+    $statusObj->start_time = $start_time;
+    $ret = $statusObj->sendConfirmation($sendflg);
+} catch (SystemWarn $warn) {
+    $warn->resultlog();
+    exit(1);
+}
+
+exit(0);
+
+?>
+

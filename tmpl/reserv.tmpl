@@ -1,0 +1,128 @@
+{include file='./base/header.tmpl'}
+{include file='./base/navigation.tmpl'}
+  <article class="base">
+    <div class="msg">
+      {$message}
+    </div>
+
+    <form method="POST" action="reserv.php" enctype="multipart/form-data">
+      <div class="table">
+        <div class="row">
+          <div class="label">
+            Fromアドレス
+          </div>
+          <div class="cell">
+            <select name="fromaddr">
+              <option value="">選択してください</option>
+{foreach $FT_addr as $line_key => $value}
+{if isset($save_fromaddr) and $line_key === $save_fromaddr}
+              <option value="{$line_key}" selected>{$value}</option>
+{else}
+              <option value="{$line_key}">{$value}</option>
+{/if}
+{/foreach}
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            Toアドレス
+          </div>
+          <div class="cell">
+            <select name="toaddr">
+              <option value="">選択してください</option>
+{foreach $FT_addr as $line_key => $value}
+{if isset($save_toaddr) and $line_key === $save_toaddr}
+              <option value="{$line_key}" selected>{$value}</option>
+{else}
+              <option value="{$line_key}">{$value}</option>
+{/if}
+{/foreach}
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            Reply-Toアドレス
+          </div>
+          <div class="cell">
+{if isset($save_replyaddr)}
+            <input type="text" size="55" name="replyaddr" value="{$save_replyaddr}">
+{else}
+            <input type="text" size="55" name="replyaddr" value="">
+{/if}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            件名
+          </div>
+          <div class="cell">
+{if isset($save_subject)}
+            <input type="text" size="55" name="subject" value="{$save_subject}">
+{else}
+            <input type="text" size="55" name="subject" value="">
+{/if}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            メール本文
+          </div>
+          <div class="cell">
+{if isset($save_maintext)}
+            <textarea cols="78" rows="15" name="maintext" value="{$save_maintext}">{$save_maintext}</textarea>
+{else}
+            <textarea cols="78" rows="15" name="maintext" value=""></textarea>
+{/if}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            宛先アドレス登録
+          </div>
+          <div class="cell">
+            <input type="file" name="upfile" size="30">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            テスト送信先
+          </div>
+          <div class="cell">
+{if isset($save_testaddr)}
+            <input type="input" size="30" name="testaddr" value="{$save_testaddr}">
+{else}
+            <input type="input" size="30" name="testaddr" value="">
+{/if}
+            <input class="submit" type="submit" name="test_send" value="テスト送信">
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row">
+          <div class="label">
+            配信予約日時
+          </div>
+          <div> 
+{if isset($save_date)}
+            <input type="text" id="dtp" size="30" name="date" value="{$save_date}">
+{else}
+            <input type="text" id="dtp" size="30" name="date" value="{$date}">
+{/if}
+            <input class="submit" type="submit" name="rsrv_send" value="予約配信">
+            <input class="submit" type="submit" name="immd_send" value="即時配信">
+          </div>
+        </div>
+      </div>
+    </form>
+  </article>
+
+{include file='./base/footer.tmpl'}

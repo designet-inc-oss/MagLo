@@ -1,0 +1,114 @@
+{include file='./base/header.tmpl'}
+{include file='./base/navigation.tmpl'}
+  <article class="base">
+    <div class="msg">
+      {$message}
+    </div>
+
+    <div class="table">
+      <div class="row">
+        登録済み送受信者
+      </div>
+      <div class="row">
+        <div class="label">
+          識別名
+        </div>
+        <div class="label">
+          メールアドレス
+        </div>
+        <div class="label">
+        </div>
+      </div>
+
+{foreach $sender as $line_key => $hash_value}
+  {foreach $hash_value as $hash_key => $name_value}
+    {foreach $name_value as $name_key => $addr}
+
+      <form class="row" method="POST" action="sender.php">
+          <input type="hidden" name="line_num" value="{$line_key}">
+          <input type="hidden" name="hash" value="{$hash_key}">
+
+{if isset($failure) and isset($save_line_num) and isset($save_hash) and 
+    $line_key == $save_line_num and $hash_key == $save_hash}
+
+          <div class="cell">
+            <input type="text" maxlength="64" size="35" name="name" value="{$save_name}">
+          </div>
+          <div class="cell">
+            <input type="text" maxlength="256" size="35" name="addr" value="{$save_addr}">
+          </div>
+{else}
+          <div class="cell">
+            <input type="text" maxlength="64" size="35" name="name" value="{$name_key}">
+          </div>
+          <div class="cell">
+            <input type="text" maxlength="256" size="35" name="addr" value="{$addr}">
+          </div>
+{/if}
+
+          <div class="cell">
+            <input class="confirm" type="button" name="modify" value="更新">
+            <input class="confirm" type="button" name="delete" value="削除">
+          </div>
+      </form>
+    {/foreach}
+  {/foreach}
+{/foreach}
+
+    </div>
+
+    <div class="addrange">
+    <form method="POST" action="sender.php">
+      <input type="hidden" name="add_line_num" value="add_line_num">
+      <input type="hidden" name="add_hash" value="add_hash">
+      <div class="addtable">
+        <div class="row">
+          新規登録
+        </div>
+        <div class="row">
+          <div class="label">
+            追加識別名
+          </div>
+          <div class="cell"> 
+
+{if isset($failure) and isset($save_add_name)}
+            <input type="text" maxlength="64" size="35" name="add_name" value="{$save_add_name}">
+{else}
+            <input type="text" maxlength="64" size="35" name="add_name" value="">
+{/if}
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">
+            追加メールアドレス
+          </div>
+          <div class="cell"> 
+
+{if isset($failure) and  isset($save_add_addr)}
+            <input type="text" maxlength="256" size="35" name="add_addr" value="{$save_add_addr}">
+{else}
+            <input type="text" maxlength="256" size="35" name="add_addr" value="">
+{/if}
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="none"> 
+          </div>
+          <div class="right"> 
+            <input class="confirm" type="button" name="add" value="追加">
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </article>
+
+  <article>
+    <div id="jquery-ui-dialog" title="確認">
+      <p id="dialogmsg"></p>
+    </div>
+  </article>
+
+{include file='./base/footer.tmpl'}

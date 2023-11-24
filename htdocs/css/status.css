@@ -1,0 +1,64 @@
+table.middle {
+    border-collapse: collapse;
+    width: 780px;
+    margin-bottom: 20px;
+}
+
+td.radio {
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+    width: 25px;
+}
+
+td.date {
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+    width: 120px;
+}
+
+td.status {
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+    width: 70px;
+}
+
+td.count {
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+    width: 100px;
+}
+
+td.check {
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+}
+
+td.line {
+    border: 1px solid #999999;
+    color: #444444;
+}
+
+td.middle {
+    border: 1px solid #999999;
+    width:350px;
+}
+
+td.right {
+    padding-top: 5px;
+    text-align: right;
+}
+
+th.headline {
+    border: 1px solid #999999;
+    text-align: left;
+}

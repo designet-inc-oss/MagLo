@@ -1,0 +1,178 @@
+{if (isset($link))}
+    {$link}
+{/if}
+
+{if ($link === NULL)}
+    {include file='./base/header.tmpl'}
+{/if}
+
+{if ($link_content === NULL) and ($link === NULL)}
+{include file='./base/navigation.tmpl'}
+  <article class="base">
+    <div class="msg">
+    {$message}
+    </div>
+
+    <form action="status.php" method="post" name="status">
+{if ($data === NULL)}
+      <table class="table">
+        <tr>
+          <div style="text-align:center">ジョブの検索</div>
+          <br>
+          <div style="text-align:center">
+            検索期間に配信開始日が一致するジョブを検索します
+          </div>
+          <br>
+        </tr>
+      </table>
+{/if}
+      <table class="table">
+        <tr>
+          <td class="desc1">
+            配信日時
+          </td>
+          <td class="base"> 
+            <input type="text" id="dtp" name="search_s_time" size="30" value="{$search_s_time}">
+            〜
+            <input type="text" id="dtp2" name="search_e_time" size="30" value="{$search_e_time}">
+            <input class="submit" type="submit" name="search" value="検索">
+          </td>
+        </tr>
+      </table>
+{/if}
+
+{if (isset($data)) and ($link_content === NULL) and ($link === NULL)}
+      <table class="table">
+        <tr>
+          <td class="radio">
+          </td>
+          <td class="date">
+            配信開始日時
+          </td>
+          <td class="date">
+            配信完了日時
+          </td>
+          <td class="status">
+            ステータス
+          </td>
+          <td class="count">
+            配信数
+          </td>
+          <td class="check">
+            内容確認
+          </td>
+        </tr>
+
+{foreach $data as $dir_num => $array_num}
+  {foreach $array_num as $start_time => $array_num2}
+    {foreach $array_num2 as $end_time => $array_num3}
+      {foreach $array_num3 as $status => $array_num4}
+        {foreach $array_num4 as $number}
+        <tr class="">
+          <td class="line">
+            <input type="radio" name="check" value="{$dir_num}">
+          </td>
+          <td class="line">
+            {$start_time}
+          </td>
+          <td class="line">
+            {$end_time}
+          </td>
+          <td class="line">
+            {$status}
+          </td>
+          <td class="line">
+            {$number}
+          </td>
+          <td class="line">
+            <a class="submit2" href="status.php?id={$dir_num}&page=content" target="_blank">配信内容</a>
+            <a class="submit2" href="status.php?id={$dir_num}&page=list" target="_blank">宛先リスト</a>
+{if ($status !== "未配信" and $status !== "一時中断")}
+            <a class="submit2" href="status.php?id={$dir_num}&page=log" target="_blank">配信ログ</a>
+{/if}
+{if ($status === "一時中断" and $end_time !== "")}
+            <a class="submit2" href="status.php?id={$dir_num}&page=log" target="_blank">配信ログ</a>
+{/if}
+          </td>
+        </tr>
+        {/foreach}
+      {/foreach}
+    {/foreach}
+  {/foreach}
+{/foreach}
+
+        <tr>
+          <td colspan="6" class="right">
+            <input class="confirm" type="button" name="break" value="配信中断">
+            <input class="confirm" type="button" name="restart" value="配信再開">
+            <input class="confirm" type="button" name="delete" value="ジョブ削除">
+          </td>
+        </tr>
+      </table>
+    </form>
+{/if}
+
+{if (isset($link_content))}
+  <article class="base">
+    <div class="msg">
+    {$message}
+
+    </div>
+    <div class="table">
+        <div class="row">
+          <div class="label">
+            Fromアドレス
+          </div>
+          <div class="cell">
+            {$from_addr}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            Toアドレス
+          </div>
+          <div class="cell">
+            {$to_addr}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            Reply-Toアドレス
+          </div>
+          <div class="cell">
+            {$reply_addr}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            件名
+          </div>
+          <div class="cell">
+            {$subject}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            メール本文
+          </div>
+          <div class="cell">
+            {$text}
+          </div>
+        </div>
+    </div>
+{/if}
+
+{if ($link === NULL)}
+  </article>
+  <article>
+    <div id="jquery-ui-dialog" title="確認">
+      <p id="dialogmsg"></p>
+    </div>
+  </article>
+
+{include file='./base/footer.tmpl'}
+{/if}

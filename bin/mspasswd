@@ -1,0 +1,73 @@
+#!/bin/bash
+
+function readPasswd()
+{
+    read -p "Password:" -s password
+    echo
+    read -p "Confirm Password:" -s confirm
+    echo
+    echo
+
+    if [ ${password} != ${confirm} ];then
+        echo "Invalid Password"
+        exit 1
+    fi
+
+    export MS_PASSWD=${password}
+    shahash=`php -r 'echo sha1(getenv("MS_PASSWD"));'`
+    unset MS_PASSWD
+}
+
+comment="comment"
+tmp="ms.tmp."`date +%s`
+
+if [ $# -gt 4 -o $# -lt 3 ]; then
+    echo "Usage: $0 -a|-d|-m [PasswordFile] [User] [Comment]"
+    exit 1
+fi
+
+if [ $1 != "-a" -a $1 != "-d" -a $1 != "-m" ]; then
+    echo "Usage: $0 -a|-d|-m [PasswordFile] [User] [Comment]"
+    exit 1
+fi
+
+if [ ! -f $2 ]; then
+    echo "No such file($2)."
+    exit 1
+fi
+
+if [ "$4" != "" ];then
+    comment=$4
+fi
+
+
+case $1 in
+"-a")
+    readPasswd
+    grep -q "^$3:" $2 2> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "Already exist($3)."
+        exit 1
+    fi
+    echo $3:${shahash}:${comment} >> $2
+    echo User add Success.
+    ;;
+"-d")
+    grep -v "^$3:" $2 > /tmp/$tmp
+    mv /tmp/$tmp $2
+    echo User delete Success.
+    ;;
+"-m")
+    readPasswd
+    grep -q "^$3:" $2 2> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "No such user($3)."
+        exit 1
+    fi
+    sed "s/:.*:/:${shahash}:/g" $2 > /tmp/$tmp
+    mv /tmp/$tmp $2
+
+    echo Change password Success.
+    ;;
+esac
+

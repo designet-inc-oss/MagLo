@@ -1,0 +1,198 @@
+/*****************************************************************************
+ *ヘッダー部分
+ *****************************************************************************/
+header.bg {
+    /* for IE 8,9 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4169E1', endColorstr='#FFFFF0', GradientType=0)";
+
+    /* for Firefox/Chrome */
+    background: -prefix-linear-gradient(top, #4169E1, #FFFFF0);
+    background: linear-gradient(to top, #4169E1, #FFFFF0);
+
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    height: 35px;
+}
+
+div.logo {
+    font-size: 26px;
+    color: #C0C0C0;
+    text-shadow: 1px -2px 2px #000000;
+    font-weight: bold;
+}
+
+/*****************************************************************************
+ * ナビゲーション部分
+ *****************************************************************************/
+nav.pos {
+    margin-top: 10px; 
+    margin-left: -2px; 
+}
+
+div.logout {
+    float: right;
+}
+
+div.tab {
+    clear: right;
+    margin-left: 2px;
+}
+
+a.tab {
+    display:block;
+    float: left;
+    width: 135px;
+    height: 20px;
+    line-height: 20px;
+
+    border: 1px solid #999999;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    background: -prefix-linear-gradient(top, #999999, #FFFFF0);
+    background: linear-gradient(to top, #999999, #FFFFF0);
+
+    font-size: 13px;
+    color: #424242;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*****************************************************************************
+ * 本文
+ *****************************************************************************/
+body {
+    font-family:'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, 'IPA P Gothic',sans-serif;
+    font-size: 12px;
+    min-width: 700px;
+}
+
+div.msg {
+    margin-left:auto;
+    margin-right:auto;
+    width:500px;
+    text-align:center;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+article.base {
+    clear:both;
+    border: 1px solid #999999;
+}
+
+/*****************************************************************************
+ * フッタ−部分
+ *****************************************************************************/
+footer {
+    /* for IE 8,9 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFF0', endColorstr='#4169E1', GradientType=0)";
+    background: -prefix-linear-gradient(top, #FFFFF0, #4169E1);
+
+    /* for Firefox/Chrome */
+    background: linear-gradient(to top, #FFFFF0, #4169E1);
+
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto; 
+    height: 35px;
+}
+
+p.footer_logo {
+    text-align: right;
+    color: #999999;
+}
+
+
+
+/*****************************************************************************
+ * テーブル
+ *****************************************************************************/
+.table {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 780px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: table-row;
+}
+
+.row > .cell {
+    display: table-cell;
+    border: 1px solid #999999;
+}
+
+.row > .label {
+    display: table-cell;
+    border: 1px solid #999999;
+    color: #444444;
+    font-size: 13px;
+    background: #ECF8E0;
+}
+
+.row > .none {
+    display: table-cell;
+}
+
+.right {
+    text-align: right;
+}
+
+/*****************************************************************************
+ * フォーム
+ *****************************************************************************/
+textarea {
+    font-size: 12px;
+}
+
+input {
+    font-size: 12px;
+}
+
+/*****************************************************************************
+ * ボタン
+ *****************************************************************************/
+.submit, .confirm {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+    background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+    background-color:#ededed;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3d4a4d;
+    font-size:12px;
+    padding:1px 20px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #e1e2ed;
+}
+
+.submit, .confirm:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color:#bab1ba;
+}
+
+.submit, .confirm:active {
+    position:relative;
+    top:1px;
+}
